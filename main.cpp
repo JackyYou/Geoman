@@ -1,6 +1,7 @@
 //Area Tools 图形面积计算器
 #include <iostream>
 #include <cmath>
+#include <windows.h>
 using namespace std;
 
 class Triangle
@@ -10,8 +11,19 @@ class Triangle
 		
 		void setSide()
 		{
-			cout<<"请分别输入三边：";
-			cin>>a>>b>>c; 
+			while(int i=1)
+			{
+				cout<<"请分别输入三边：";
+				cin>>a>>b>>c;
+				if(a+b<=c || a+c<=b || b+c<=a || abs(a-b)>=c || abs(a-c)>=b || abs(b-c)>=a)
+				{
+					cout<<"边长数据错误！请重新输入！"<<endl;
+					Sleep(2000);
+					system("cls");
+					continue; 
+				}
+				break;
+			}
 		}
 		
 		float getArea()
@@ -66,44 +78,56 @@ class Circle
 
 int main()
 {
-	cout<<"欢迎使用AreaTools图形面积计算器1.0"<<endl; 
+	cout<<"AreaTools图形面积计算器"<<endl;
 	
 	while (int i=1)
 	{
 		int choose;
+		cout<<"================"<<endl;
 		cout<<"1.计算三角形面积"<<endl
 			<<"2.计算四边形面积"<<endl
 			<<"3.计算圆面积"<<endl
-			<<"4.退出本程序"<<endl; 
+			<<"4.退出本程序"<<endl
+			<<"================"<<endl; 
 		cout<<"请输入你要进行的操作：";
 		cin>>choose;
+		system("cls");
 	
 		if(choose==1)
 		{
 			Triangle triangle1;
 			triangle1.setSide();
 			cout<<"此三角形面积为 "<<triangle1.getArea()<<endl;
+			Sleep(3000); 
+			system("cls");
 		}
 		else if(choose==2)
 		{
-		Quadrise quadrise1;
-		quadrise1.setSide();
-		cout<<"此四边形面积为 "<<quadrise1.getArea()<<endl;
+			Quadrise quadrise1;
+			quadrise1.setSide();
+			cout<<"此四边形面积为 "<<quadrise1.getArea()<<endl;
+			Sleep(3000); 
+			system("cls");
 		}
 		else if(choose==3)
 		{
 			Circle circle1;
 			circle1.setSide();
 			cout<<"此圆面积为 "<<circle1.getArea()<<endl; 
+			Sleep(3000); 
+			system("cls");
 		}
 		else if(choose==4)
 		{
 			cout<<"感谢您使用本程序！"<<endl;
+			Sleep(1000); 
 			break; 
 		}
 		else
 		{
 			cout<<"没有此操作，请重新输入！"<<endl;
+			Sleep(2000); 
+			system("cls");
 		}
 	}
 }
